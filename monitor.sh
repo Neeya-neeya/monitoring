@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --- Surveillance CPU ---
+# Surveillance CPU
 cpu_usage=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}')
 
 echo "Utilisation CPU : ${cpu_usage}%"
@@ -11,3 +11,8 @@ available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
 usage=$(echo "scale=2; (1 - $available/$total)*100" | bc) 
 
 echo "Utilisation RAM : ${usage}%"
+
+#  Surveillance Disque
+disk_usage=$(df / | tail -1 | awk '{print $5}')
+
+echo "Utilisation disque racine : ${disk_usage}"

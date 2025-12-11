@@ -9,3 +9,6 @@ surveillance de l'utilisation du CPU par les processus en cours.
 
 *RAM*
 Surveillance d'utilisation RAM.
+
+*DISK*
+Surveillance de l'utilisation du disque racine.
