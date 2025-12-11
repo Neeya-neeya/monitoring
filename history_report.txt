@@ -1,0 +1,99 @@
+commit ad0027740e98cf74fe154011495567627384b50e
+Author: Neeya <sakina.pro04@gmail.com>
+Date:   Thu Dec 11 12:16:10 2025 +0100
+
+    Identification et correction du nom de variable RAM : totl --> total
+
+diff --git a/monitor.sh b/monitor.sh
+index ce6fbf8..d4af279 100755
+--- a/monitor.sh
++++ b/monitor.sh
+@@ -6,7 +6,7 @@ cpu_usage=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {pr
+ echo "Utilisation CPU : ${cpu_usage}%"
+ 
+ #  Surveillance RAM (avec erreur volontaire)
+-totl=$(grep MemTotal /proc/meminfo | awk '{print $2}')
++total=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+ available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+ usage=$(echo "scale=2; (1 - $available/$total)*100" | bc) 
+ 
+
+commit c05fa1cdcfd570b250ba0cc109beffb1811cf150
+Merge: 5e8db0f 84ed484
+Author: Neeya <sakina.pro04@gmail.com>
+Date:   Thu Dec 11 12:11:37 2025 +0100
+
+    Résolution des conflits et merge branche feature/disk.
+
+commit 5e8db0fce5cd1aa0193ea654758aa03b00f083a5
+Merge: bedd00f 656192f
+Author: Neeya <sakina.pro04@gmail.com>
+Date:   Thu Dec 11 12:09:54 2025 +0100
+
+    Résolution des conflits dues au merge de la branche feature/ram. Fusion des fichiers.
+
+commit 84ed4845af2bbb3aa9d3876bf911929acd6721b6
+Author: Neeya <sakina.pro04@gmail.com>
+Date:   Thu Dec 11 12:06:19 2025 +0100
+
+    Ajout de la surveillance de disque
+
+diff --git a/monitor.sh b/monitor.sh
+index e69de29..b5fc7c4 100755
+--- a/monitor.sh
++++ b/monitor.sh
+@@ -0,0 +1,6 @@
++#!/bin/bash
++
++# --- Surveillance Disque ---
++disk_usage=$(df / | tail -1 | awk '{print $5}')
++
++echo "Utilisation disque racine : ${disk_usage}"
+
+commit 214b12208ca74936306081459a57591d54b9849a
+Author: Neeya <sakina.pro04@gmail.com>
+Date:   Thu Dec 11 12:04:02 2025 +0100
+
+    Ajout surveillance RAM.
+
+diff --git a/monitor.sh b/monitor.sh
+index e69de29..38d7443 100755
+--- a/monitor.sh
++++ b/monitor.sh
+@@ -0,0 +1,8 @@
++#!/bin/bash
++
++#  Surveillance RAM (avec erreur volontaire)
++totl=$(grep MemTotal /proc/meminfo | awk '{print $2}')
++available=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
++usage=$(echo "scale=2; (1 - $available/$total)*100" | bc) 
++
++echo "Utilisation RAM : ${usage}%"
+
+commit bedd00f023e19052e71ec3b68262f428ef1df7c2
+Author: Neeya <sakina.pro04@gmail.com>
+Date:   Thu Dec 11 11:58:42 2025 +0100
+
+    Ajout de la feature de surveillance CPU et update du README.
+
+diff --git a/monitor.sh b/monitor.sh
+index e69de29..949d9cf 100755
+--- a/monitor.sh
++++ b/monitor.sh
+@@ -0,0 +1,6 @@
++#!/bin/bash
++
++# --- Surveillance CPU ---
++cpu_usage=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}')
++
++echo "Utilisation CPU : ${cpu_usage}%"
+
+commit dd6dc36a3b88ef57c96da41eac0251d5cb0a435b
+Author: Neeya <sakina.pro04@gmail.com>
+Date:   Thu Dec 11 11:41:46 2025 +0100
+
+    Initialisation du dépôt avec monitor.sh vide et README.md
+
+diff --git a/monitor.sh b/monitor.sh
+new file mode 100755
+index 0000000..e69de29
