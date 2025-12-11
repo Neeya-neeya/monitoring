@@ -6,3 +6,6 @@ Mini script Bash de surveillance CPU/RAM/Disque.
 
 *Monitoring CPU*
 surveillance de l'utilisation du CPU par les processus en cours.
+
+*RAM*
+Surveillance d'utilisation RAM.
